@@ -1,0 +1,83 @@
+/* ── Header Styles ── */
+.header {
+    height: var(--grafana-header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: var(--grafana-bg-secondary);
+    border-bottom: 1px solid var(--grafana-border);
+    flex-shrink: 0;
+    z-index: 50;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header__icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.header__title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.header__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--grafana-text-bright);
+    line-height: 1.2;
+}
+
+.header__subtitle {
+    font-size: 11px;
+    color: var(--grafana-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── Right Badges ── */
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header__model-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--grafana-radius);
+    background: rgba(56, 113, 220, 0.1);
+    border: 1px solid rgba(56, 113, 220, 0.2);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--grafana-accent-cyan);
+    font-family: var(--font-mono);
+    letter-spacing: 0.03em;
+}
+
+.header__model-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--grafana-accent-green);
+}
+
+.header__time {
+    font-size: 12px;
+    color: var(--grafana-text-muted);
+    font-family: var(--font-mono);
+}
+
+@media (max-width: 640px) {
+    .header__right {
+        display: none;
+    }
+}

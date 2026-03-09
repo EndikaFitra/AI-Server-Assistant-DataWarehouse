@@ -1,0 +1,54 @@
+/* ══════════════════════════════════════════════════════════
+   Grafana Design Tokens — CSS Custom Properties
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+    /* ── Background ── */
+    --grafana-bg: #111217;
+    --grafana-bg-secondary: #181b1f;
+    --grafana-bg-card: #1e2028;
+    --grafana-bg-card-hover: #252830;
+    --grafana-bg-input: #0c0e14;
+    --grafana-bg-canvas: #0e1013;
+
+    /* ── Accent Colors ── */
+    --grafana-accent: #3871dc;
+    --grafana-accent-hover: #4a82ed;
+    --grafana-accent-orange: #ff6600;
+    --grafana-accent-green: #73bf69;
+    --grafana-accent-red: #f2495c;
+    --grafana-accent-yellow: #f2cc0c;
+    --grafana-accent-purple: #b877d9;
+    --grafana-accent-cyan: #5794f2;
+
+    /* ── Text ── */
+    --grafana-text: #d8d9da;
+    --grafana-text-bright: #eeeeee;
+    --grafana-text-muted: #8e8e8e;
+    --grafana-text-disabled: #5a5a5a;
+
+    /* ── Borders ── */
+    --grafana-border: #2c3038;
+    --grafana-border-hover: #3c4048;
+    --grafana-border-strong: #44474e;
+
+    /* ── Shadows ── */
+    --grafana-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --grafana-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --grafana-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    /* ── Spacing ── */
+    --grafana-panel-padding: 16px;
+    --grafana-panel-header-h: 38px;
+    --grafana-sidebar-w: 56px;
+    --grafana-sidebar-w-expanded: 200px;
+    --grafana-header-h: 52px;
+
+    /* ── Radius ── */
+    --grafana-radius: 4px;
+    --grafana-radius-lg: 8px;
+
+    /* ── Typography ── */
+    --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}

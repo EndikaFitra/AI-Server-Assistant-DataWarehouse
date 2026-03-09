@@ -1,0 +1,203 @@
+/* ── Sidebar Styles ── */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--grafana-sidebar-w);
+    height: 100vh;
+    background: var(--grafana-bg-secondary);
+    border-right: 1px solid var(--grafana-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: var(--grafana-sidebar-w-expanded);
+}
+
+.sidebar:hover .sidebar__label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar:hover .sidebar__logo-text {
+    opacity: 1;
+    width: auto;
+}
+
+/* ── Logo ── */
+.sidebar__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: var(--grafana-header-h);
+    padding: 0 14px;
+    border-bottom: 1px solid var(--grafana-border);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.sidebar__logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--grafana-accent-orange), #ff8833);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar__logo-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.sidebar__logo-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.15s ease 0.05s;
+}
+
+.sidebar__logo-text h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--grafana-text-bright);
+    line-height: 1.1;
+}
+
+.sidebar__logo-text p {
+    font-size: 10px;
+    color: var(--grafana-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── New Chat Button ── */
+.sidebar__new-chat {
+    margin: 10px 10px 4px;
+    padding: 0;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--grafana-radius);
+    border: 1px dashed var(--grafana-border-strong);
+    background: transparent;
+    color: var(--grafana-text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.sidebar__new-chat:hover {
+    border-color: var(--grafana-accent);
+    color: var(--grafana-accent);
+    background: rgba(56, 113, 220, 0.08);
+}
+
+.sidebar__new-chat svg {
+    flex-shrink: 0;
+}
+
+/* ── Nav Items ── */
+.sidebar__nav {
+    flex: 1;
+    padding: 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+}
+
+.sidebar__nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: var(--grafana-radius);
+    border: none;
+    background: transparent;
+    color: var(--grafana-text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.12s ease;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar__nav-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--grafana-text);
+}
+
+.sidebar__nav-item--active {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--grafana-text-bright);
+}
+
+.sidebar__nav-item--active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background: var(--grafana-accent-orange);
+}
+
+.sidebar__nav-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+.sidebar__label {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease 0.05s, transform 0.15s ease 0.05s;
+}
+
+/* ── Footer ── */
+.sidebar__footer {
+    padding: 12px 14px;
+    border-top: 1px solid var(--grafana-border);
+    flex-shrink: 0;
+}
+
+.sidebar__status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--grafana-text-muted);
+    white-space: nowrap;
+}
+
+.sidebar__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grafana-accent-green);
+    flex-shrink: 0;
+    animation: pulse-glow 2s ease-in-out infinite;
+}

@@ -1,0 +1,111 @@
+/* ── Chat Message Styles ── */
+.chat-msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 16px;
+    animation: fadeInUp 0.25s ease-out forwards;
+}
+
+.chat-msg--user {
+    flex-direction: row-reverse;
+}
+
+/* Avatar */
+.chat-msg__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.chat-msg--ai .chat-msg__avatar {
+    background: linear-gradient(135deg, var(--grafana-accent), var(--grafana-accent-purple));
+}
+
+.chat-msg--user .chat-msg__avatar {
+    background: var(--grafana-bg-card);
+    border: 1px solid var(--grafana-border-strong);
+}
+
+/* Bubble */
+.chat-msg__bubble {
+    max-width: 78%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-msg--user .chat-msg__bubble {
+    align-items: flex-end;
+    max-width: 70%;
+}
+
+.chat-msg__content {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.chat-msg--user .chat-msg__content {
+    background: var(--grafana-accent);
+    color: #fff;
+    border-bottom-right-radius: 2px;
+}
+
+.chat-msg--ai .chat-msg__content {
+    background: var(--grafana-bg-card);
+    border: 1px solid var(--grafana-border);
+    color: var(--grafana-text);
+    border-bottom-left-radius: 2px;
+}
+
+.chat-msg__time {
+    font-size: 10px;
+    color: var(--grafana-text-disabled);
+    margin-top: 4px;
+    padding: 0 4px;
+}
+
+/* ── Typing Indicator ── */
+.typing {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 16px;
+    animation: fadeInUp 0.25s ease-out forwards;
+}
+
+.typing__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--grafana-accent), var(--grafana-accent-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.typing__bubble {
+    background: var(--grafana-bg-card);
+    border: 1px solid var(--grafana-border);
+    border-radius: 8px;
+    border-bottom-left-radius: 2px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.typing__dot {
+    width: 7px;
+    height: 7px;
+    background: var(--grafana-accent-cyan);
+    border-radius: 50%;
+}

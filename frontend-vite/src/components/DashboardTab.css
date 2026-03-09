@@ -1,0 +1,155 @@
+/* ── Dashboard Tab Styles ── */
+.dashboard {
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* ── Stat Grid ── */
+.dashboard__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.dashboard__stat-card {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboard__stat-card .grafana-stat-value {
+    margin-top: 8px;
+}
+
+.dashboard__stat-icon {
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+/* -- Stat Color Variants -- */
+.dashboard__stat-card--blue .grafana-stat-value {
+    color: var(--grafana-accent-cyan);
+}
+
+.dashboard__stat-card--green .grafana-stat-value {
+    color: var(--grafana-accent-green);
+}
+
+.dashboard__stat-card--yellow .grafana-stat-value {
+    color: var(--grafana-accent-yellow);
+}
+
+.dashboard__stat-card--orange .grafana-stat-value {
+    color: var(--grafana-accent-orange);
+}
+
+.dashboard__stat-card--blue {
+    border-top: 2px solid var(--grafana-accent-cyan);
+}
+
+.dashboard__stat-card--green {
+    border-top: 2px solid var(--grafana-accent-green);
+}
+
+.dashboard__stat-card--yellow {
+    border-top: 2px solid var(--grafana-accent-yellow);
+}
+
+.dashboard__stat-card--orange {
+    border-top: 2px solid var(--grafana-accent-orange);
+}
+
+.dashboard__stat-card--red .grafana-stat-value {
+    color: var(--grafana-accent-red);
+}
+
+.dashboard__stat-card--red {
+    border-top: 2px solid var(--grafana-accent-red);
+}
+
+/* ── Table Panel ── */
+.dashboard__table-panel {
+    margin-bottom: 16px;
+}
+
+.dashboard__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    text-align: center;
+}
+
+.dashboard__empty-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.dashboard__empty-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--grafana-text);
+    margin-bottom: 4px;
+}
+
+.dashboard__empty-desc {
+    font-size: 13px;
+    color: var(--grafana-text-muted);
+}
+
+.dashboard__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 12px;
+}
+
+.dashboard__loading-text {
+    font-size: 13px;
+    color: var(--grafana-text-muted);
+}
+
+/* ── Service Name Styling ── */
+.dashboard__service-name {
+    font-weight: 600;
+    color: var(--grafana-text-bright);
+    font-family: var(--font-sans);
+}
+
+.dashboard__metric-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--grafana-accent-cyan);
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--grafana-border);
+}
+
+.dashboard__metric-value {
+    font-weight: 600;
+    color: var(--grafana-text-bright);
+    text-align: right;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .dashboard__stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard__stats {
+        grid-template-columns: 1fr;
+    }
+}

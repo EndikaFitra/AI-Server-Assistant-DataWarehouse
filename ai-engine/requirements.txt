@@ -1,0 +1,7 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+requests>=2.31.0
+psycopg2-binary>=2.9.9
+chromadb>=0.5.0
+mcp[cli]>=1.2.0
+pydantic>=2.0.0

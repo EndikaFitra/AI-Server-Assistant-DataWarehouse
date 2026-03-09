@@ -1,0 +1,39 @@
+# ==============================================
+# Prometheus Configuration — AIOps Monitoring
+# ==============================================
+
+global:
+  scrape_interval: 15s        # Scrape setiap 15 detik
+  evaluation_interval: 15s    # Evaluasi rules setiap 15 detik
+  scrape_timeout: 10s
+
+  external_labels:
+    environment: "aiops-lab"
+    project: "infrastructure-reliability"
+
+# ── Scrape Configurations ──
+scrape_configs:
+
+  # 1) Prometheus self-monitoring
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          service: "prometheus"
+
+  # 2) Nginx metrics via nginx-exporter
+  - job_name: "nginx"
+    static_configs:
+      - targets: ["nginx-exporter:9113"]
+        labels:
+          service: "nginx"
+          role: "web-server"
+
+  # 3) cAdvisor — Container-level metrics (CPU, Memory, Network, Disk)
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor:8080"]
+        labels:
+          service: "cadvisor"
+
+

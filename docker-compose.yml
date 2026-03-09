@@ -1,0 +1,125 @@
+version: "3.8"
+
+services:
+  # ============================================
+  # SIMULATED INFRASTRUCTURE (Monitoring Targets)
+  # ============================================
+
+  # Nginx — Web server target yang akan dimonitor
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: aiops-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - aiops-net
+    restart: unless-stopped
+
+  # PostgreSQL Target — Database target yang akan dimonitor
+  postgres-target:
+    image: postgres:16-alpine
+    container_name: aiops-postgres-target
+    environment:
+      POSTGRES_USER: target_user
+      POSTGRES_PASSWORD: target_pass
+      POSTGRES_DB: target_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_target_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - aiops-net
+    restart: unless-stopped
+
+  # ============================================
+  # MONITORING STACK
+  # ============================================
+
+  # cAdvisor — Container-level metrics collector
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: aiops-cadvisor
+    ports:
+      - "8081:8080"
+    command:
+      - "--docker_only=true"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    networks:
+      - aiops-net
+    restart: unless-stopped
+
+  # Prometheus — Time-series monitoring & alerting
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: aiops-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=7d"
+      - "--web.enable-lifecycle"
+    networks:
+      - aiops-net
+    depends_on:
+      - nginx
+      - cadvisor
+    restart: unless-stopped
+
+  # Nginx Exporter — Expose Nginx metrics untuk Prometheus
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.1
+    container_name: aiops-nginx-exporter
+    ports:
+      - "9113:9113"
+    command:
+      - "-nginx.scrape-uri=http://nginx:80/stub_status"
+    networks:
+      - aiops-net
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  # ============================================
+  # DATA WAREHOUSE
+  # ============================================
+
+  # PostgreSQL Data Warehouse — Menyimpan metrik historis (Star Schema)
+  postgres-warehouse:
+    image: postgres:16-alpine
+    container_name: aiops-postgres-warehouse
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: warehouse_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_warehouse_data:/var/lib/postgresql/data
+    networks:
+      - aiops-net
+    restart: unless-stopped
+
+volumes:
+  pg_target_data:
+  pg_warehouse_data:
+  prometheus_data:
+
+networks:
+  aiops-net:
+    driver: bridge

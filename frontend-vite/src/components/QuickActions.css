@@ -1,0 +1,44 @@
+/* ── Quick Actions Styles ── */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 540px;
+    margin: 24px auto 0;
+}
+
+.quick-actions__btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--grafana-radius);
+    border: 1px solid var(--grafana-border);
+    background: var(--grafana-bg-card);
+    color: var(--grafana-text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+
+.quick-actions__btn:hover {
+    border-color: var(--grafana-accent);
+    color: var(--grafana-text);
+    background: var(--grafana-bg-card-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--grafana-shadow-sm);
+}
+
+.quick-actions__btn-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+}
