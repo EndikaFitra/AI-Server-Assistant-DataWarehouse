@@ -1,6 +1,7 @@
 # AIOps - AI-Powered Operations Dashboard
 
 AIOps is an intelligent operations dashboard that combines AI agents with infrastructure monitoring to provide automated troubleshooting and insights.
+(This project is only demo)
 
 ## Architecture Overview
 
