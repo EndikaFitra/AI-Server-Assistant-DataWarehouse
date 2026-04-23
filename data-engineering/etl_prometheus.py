@@ -240,8 +240,16 @@ class ETLPipeline:
                     record["service_name"], "service_id"
                 )
                 if not service_id:
-                    skipped += 1
-                    continue
+                    cursor.execute(
+                        """
+                        INSERT INTO dim_service (service_name, service_type, description)
+                        VALUES (%s, %s, %s)
+                        RETURNING service_id
+                        """,
+                        (record["service_name"], "auto_discovered", "Service discovered automatically by ETL")
+                    )
+                    service_id = cursor.fetchone()[0]
+                    print(f"   ✨ Auto-registered new service: {record['service_name']}")
 
                 metric_id = self.get_dimension_id(
                     cursor, "dim_metric", "metric_name",
